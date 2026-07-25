@@ -10,10 +10,15 @@ stdio_transport = StdioTransport(
 
 stdio_client = Client(stdio_transport) 
 
+
 async def main():
     async with stdio_client as client:
         result = await client.list_tools()
-        print(result)
+        print("number of tools: ", len(result))  
+        for i,tool in enumerate(result):
+            
+            print(f"tool {i+1}: ", tool.name)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
